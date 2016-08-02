@@ -54,7 +54,7 @@ void rSort(int* src, int size, int radix){
 	if(src[i] < 0){
 		//count
 		for(i = 0; i < size; i++){
-				cnt[(~src[i] >> (1/2)) & (buckets-1)]++;
+				cnt[(~src[i]) & (buckets-1)]++;
 		}
 
 		//map
@@ -66,7 +66,7 @@ void rSort(int* src, int size, int radix){
 
 		//move
 		for(i = 0; i < size; i++){
-				temp[map[(~src[i] >> (1/2))&(buckets-1)]++] = src[i];
+				temp[map[(~src[i])&(buckets-1)]++] = src[i];
 		}
 	
 		//place into original array
@@ -77,7 +77,7 @@ void rSort(int* src, int size, int radix){
 	else{
 		//count
 		for(i = 0; i < size; i++){
-				cnt[(src[i] >> (1/2)) & (buckets-1)]++;
+				cnt[(src[i]) & (buckets-1)]++;
 		}
 
 		//map
@@ -89,7 +89,7 @@ void rSort(int* src, int size, int radix){
 
 		//move
 		for(i = 0; i < size; i++){
-				temp[map[(src[i] >> (1/2))&(buckets-1)]++] = src[i];
+				temp[map[(src[i])&(buckets-1)]++] = src[i];
 		}
 	
 		//place into original array
@@ -145,11 +145,12 @@ void correct(int* semiSortedArray, int size){
 		semiSortedArray[i] = newArray[i];
 	free(newArray);
 }
+
 int main(){
 	int a[5] = {300, -1056, -111, 0, -301}; //small array to try things out on
-	int num = 7000; //amount of elements to print
-	int num2 = 450000000; //size of the array to be sorted
-	int* A = randomizeArray(num2, 65000, 0); //can only sort 450,000,000 values up to 67000
+	int num = 5000; //amount of elements to print
+	int num2 = 1000000; //size of the array to be sorted; 1,000,000 performs pretty well
+	int* A = randomizeArray(num2, 65000, 0); //can only sort 450,000,000 values up to 65000
 	printf("Before: ");
 	printArray(A, num);
 	//printArray(a, 5);
@@ -159,8 +160,9 @@ int main(){
 	printArray(A, num);
 	isSorted(A, num2);
 	/*radixSort(a, 5);
-	printArray(a, 5);*/
+	printArray(a, 5);
+	isSorted(a, 5);*/
 	printf("\n");
-	//isSorted(A, 5);
+	
 	return 0;
 }

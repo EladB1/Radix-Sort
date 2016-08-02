@@ -14,7 +14,7 @@ int cntNegatives(int* array, int size){
 			cnt++;
 	}	
 	return cnt;
-}
+} 
 
 int* negativeIndexes(int* array, int size){
 	int numOfNegatives = cntNegatives(array, size);

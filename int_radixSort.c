@@ -52,19 +52,19 @@ void rSort(int* src, int size, int radix){
 	int *cnt = malloc(sizeof(int) * buckets);
 	int *map = malloc(sizeof(int) * buckets);
 	if(src[i] < 0){
-		//count
+		//count-count each instance of a digit
 		for(i = 0; i < size; i++){
 				cnt[(~src[i]) & (buckets-1)]++;
 		}
 
-		//map
+		//map-map each element to its appropriate place in the array based on which ever digit you're 
 		j = 0;
 		for(i = 0; i < buckets; i++){
 			map[i] = j;
 			j = map[i] + cnt[i];
 		}
 
-		//move
+		//move-move each element to its appropriate position based on where it's mapped to
 		for(i = 0; i < size; i++){
 				temp[map[(~src[i])&(buckets-1)]++] = src[i];
 		}
@@ -75,19 +75,19 @@ void rSort(int* src, int size, int radix){
 		}
 	}
 	else{
-		//count
+		//count-count each instance of a digit
 		for(i = 0; i < size; i++){
 				cnt[(src[i]) & (buckets-1)]++;
 		}
 
-		//map
+		//map-map each element to its appropriate place in the array based on which ever digit you're on
 		j = 0;
 		for(i = 0; i < buckets; i++){
 			map[i] = j;
 			j = map[i] + cnt[i];
 		}
 
-		//move
+		//move-move each element to its appropriate position based on where it's mapped to
 		for(i = 0; i < size; i++){
 				temp[map[(src[i])&(buckets-1)]++] = src[i];
 		}
@@ -103,7 +103,7 @@ void rSort(int* src, int size, int radix){
 }
 void radixSort(int* src, int size){
 	int i, radix = 16;
-	for(i = 0; i < 32; i+=radix){
+	for(i = 0; i < 32; i+=radix){ //pass through the array twice
 		rSort(src, size, i);
 	}
 	if(cntNegatives(src, size) != 0)

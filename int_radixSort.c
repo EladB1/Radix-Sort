@@ -57,8 +57,8 @@ void rSort(int* src, int size, int radix){
 				cnt[(~src[i]) & (buckets-1)]++;
 		}
 
-		//map-map each element to its appropriate place in the array based on which ever digit you're 
-		j = 0;
+		//map-map each element to its appropriate place in the array based on which ever digit you're on		
+j = 0;
 		for(i = 0; i < buckets; i++){
 			map[i] = j;
 			j = map[i] + cnt[i];
